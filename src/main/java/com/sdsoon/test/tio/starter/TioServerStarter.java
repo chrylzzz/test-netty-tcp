@@ -30,6 +30,7 @@ public class TioServerStarter {
      */
     public static void main(String[] args) throws IOException {
         serverGroupContext.setHeartbeatTimeout(Const.TIMEOUT);
+        //监听的端口
         tioServer.start(serverIp, serverPort);
     }
 }

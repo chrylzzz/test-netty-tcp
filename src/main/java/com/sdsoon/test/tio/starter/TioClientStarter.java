@@ -16,7 +16,7 @@ import org.tio.core.Tio;
  * Created By Chr on 2019/4/15.
  */
 public class TioClientStarter {
-    //服务器节点
+    //连接服务端，服务器节点
     public static Node serverNode = new Node(Const.SERVER, Const.PORT);
     //handler, 包括编码、解码、消息处理
     public static ClientAioHandler tioClientHandler = new TioClientAioHandler();
