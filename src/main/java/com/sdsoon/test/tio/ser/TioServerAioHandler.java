@@ -80,17 +80,19 @@ public class  TioServerAioHandler implements ServerAioHandler {
         return buffer;
     }
     /**
-     * 处理消息
+     * 处理消息：用于接收client发来的数据
      */
     @Override
     public void handler(Packet packet, ChannelContext channelContext) throws Exception {
+        //client发来的数据
         TioPacket TioPacket = (TioPacket) packet;
         byte[] body = TioPacket.getBody();
         if (body != null) {
             String str = new String(body, TioPacket.CHARSET);
-            System.out.println("收到消息：" + str);
+            System.err.println(" 客户端 收到消息：" + str);
             TioPacket resppacket = new TioPacket();
             resppacket.setBody(("收到了你的消息，你的消息是:" + str).getBytes(TioPacket.CHARSET));
+            //服务端收到消息后 给client回执
             Tio.send(channelContext, resppacket);
         }
         return;

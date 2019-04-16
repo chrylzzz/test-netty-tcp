@@ -40,7 +40,9 @@ public class TioClientStarter {
     }
     private static void send() throws Exception {
         TioPacket packet = new TioPacket();
+        //发送给服务端的数据
         packet.setBody("hello world".getBytes(TioPacket.CHARSET));
+        //包装发送
         Tio.send(clientChannelContext, packet);
     }
 }
