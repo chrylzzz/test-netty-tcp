@@ -25,7 +25,7 @@ public class RpcServer {
 //        System.in.read();
     }
 
-    private final static String serviceAddress = "192.168.0.148:700";
+    private final static String serviceAddress = "127.0.0.1:700";
 
     public void publisher() {
 
@@ -35,7 +35,6 @@ public class RpcServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         //启动一个监听 Netty ServerSocket(ip,port)     Socket 监听端口，io交互
         try {
-
 
             //启动netty服务
             ServerBootstrap bootstrap = new ServerBootstrap();
