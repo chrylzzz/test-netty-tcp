@@ -19,7 +19,7 @@ public class TioServerStarter {
     public static ServerAioListener aioListener = null;
     //一组连接共用的上下文对象
     public static ServerGroupContext serverGroupContext = new ServerGroupContext("hello-tio-server", aioHandler, aioListener);
-    //tioServer对象
+    //tioServer对象：服务器端入口
     public static TioServer tioServer = new TioServer(serverGroupContext);
     //有时候需要绑定ip，不需要则null
     public static String serverIp = null;

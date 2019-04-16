@@ -26,8 +26,11 @@ public class TioClientStarter {
     private static ReconnConf reconnConf = new ReconnConf(5000L);
     //一组连接共用的上下文对象
     public static ClientGroupContext clientGroupContext = new ClientGroupContext(tioClientHandler, aioListener, reconnConf);
+    //客户端入口：tioClient
     public static TioClient tioClient = null;
+    //channel：建立tcp连接之后，通道channel就会产生
     public static ClientChannelContext clientChannelContext = null;
+
     /**
      * 启动程序入口
      */
@@ -38,11 +41,12 @@ public class TioClientStarter {
         //连上后，发条消息玩玩
         send();
     }
+
     private static void send() throws Exception {
         TioPacket packet = new TioPacket();
         //发送给服务端的数据
         packet.setBody("hello world".getBytes(TioPacket.CHARSET));
-        //包装发送
+        //包装发送，需要指定channel
         Tio.send(clientChannelContext, packet);
     }
 }
