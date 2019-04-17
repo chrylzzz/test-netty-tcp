@@ -1,7 +1,7 @@
 package com.sdsoon.netty.ser;
 
 
-import com.sdsoon.test.netty.bean.RpcRequest;
+import com.sdsoon.netty.bean.RpcRequest;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

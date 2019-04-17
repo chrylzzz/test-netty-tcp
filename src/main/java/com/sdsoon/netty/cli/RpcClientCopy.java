@@ -1,6 +1,6 @@
 package com.sdsoon.netty.cli;
 
-import com.sdsoon.test.netty.bean.RpcRequest;
+import com.sdsoon.netty.bean.RpcRequest;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
