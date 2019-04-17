@@ -1,6 +1,7 @@
-package com.sdsoon.test.netty.ser;
+package com.sdsoon.netty.ser;
 
 
+import com.sdsoon.test.netty.bean.RpcRequest;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -14,13 +15,18 @@ public class RpcServerHandler extends ChannelInboundHandlerAdapter {
     public RpcServerHandler() {
     }
 
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
+        RpcRequest rpcRequest = (RpcRequest) msg;
 
-        ctx.write(" 服务端   已经  发送了消息 ~ ");
+        System.err.println(rpcRequest);
 
+
+        ctx.write(" 服务端   已经  收到了消息 ~ ");
         ctx.flush();
         ctx.close();
     }
+
 }

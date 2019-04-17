@@ -1,4 +1,4 @@
-package com.sdsoon.test.netty.ser;
+package com.sdsoon.netty.ser;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -22,10 +22,11 @@ public class RpcServer {
 
     public static void main(String args[]) throws IOException {
         new RpcServer().publisher();
+
 //        System.in.read();
     }
 
-    private final static String serviceAddress = "127.0.0.1:700";
+    private final static String serviceAddress = "192.168.0.148:700";
 
     public void publisher() {
 
@@ -36,6 +37,7 @@ public class RpcServer {
         //启动一个监听 Netty ServerSocket(ip,port)     Socket 监听端口，io交互
         try {
 
+
             //启动netty服务
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(bossGroup, workerGroup);
@@ -44,12 +46,6 @@ public class RpcServer {
                 @Override
                 protected void initChannel(SocketChannel channel) throws Exception {
                     ChannelPipeline pipeline = channel.pipeline();
-//                    maxFrameLength:     帧的最大长度
-//                    lengthFieldOffset length:       字段偏移的地址
-//                    lengthFieldLength length;字段所占的字节长
-//                    lengthAdjustment: 修改帧数据长度字段中定义的值，可以为负数 因为有时候我们习惯把头部记入长度,若为负数,则说明要推后多少个字段
-//                    initialBytesToStrip: 解析时候跳过多少个长度
-//                    failFast; 为true，当frame长度超过maxFrameLength时立即报TooLongFrameException异常，为false，读取完整个帧再报异
 
 
                     pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));

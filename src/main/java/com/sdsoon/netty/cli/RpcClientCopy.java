@@ -1,4 +1,4 @@
-package com.sdsoon.test.netty.cli;
+package com.sdsoon.netty.cli;
 
 import com.sdsoon.test.netty.bean.RpcRequest;
 import io.netty.bootstrap.Bootstrap;
@@ -17,11 +17,11 @@ import java.io.IOException;
 /**
  * Created By Chr on 2019/4/15.
  */
-public class RpcClient {
+public class RpcClientCopy {
 
     public static void main(String args[]) throws IOException {
-        Object o = new RpcClient().create();
-        System.err.println(" 客户端验证：" + o.toString());
+        Object o = new RpcClientCopy().create();
+        //System.err.println(" 客户端验证：" + o.toString());
 //        System.in.read();
     }
 
@@ -32,8 +32,11 @@ public class RpcClient {
 
 
         //写回服务端数据
-        RpcRequest rpcRequest = new RpcRequest(" 客户端  接收到消息 ~ ");
-
+        RpcRequest rpcRequest = new RpcRequest();
+        rpcRequest.setId(1);
+        rpcRequest.setData("客户端_COPY发送消息的数据对象~~~");
+        rpcRequest.setImso("imso_COPY");
+        rpcRequest.setTime(System.currentTimeMillis());
         //解析host和ip
         String[] arrs = serviceAddress.split(":");
 
@@ -86,10 +89,11 @@ public class RpcClient {
             System.err.println(" Netty服务端连接失败:============= ");
 
 
-        } finally {
-            //关流，客户端不回消息了
-            group.shutdownGracefully();
         }
+//        } finally {
+//            //关流，客户端不回消息了
+//            group.shutdownGracefully();
+//        }
 
         return rpcClientHandler.getResponse();
 
