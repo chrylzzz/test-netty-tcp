@@ -37,38 +37,12 @@
 			<artifactId>netty-all</artifactId>
 			<version>4.1.7.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.curator</groupId>
-			<artifactId>curator-recipes</artifactId>
-			<version>2.5.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.curator</groupId>
-			<artifactId>curator-framework</artifactId>
-			<version>2.5.0</version>
-		</dependency>
 
-		<!-- tio -->
+		<!-- fstJson -->
 		<dependency>
-			<groupId>org.t-io</groupId>
-			<artifactId>tio-http-server</artifactId>
-			<version>3.2.9.v20190401-RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.t-io</groupId>
-			<artifactId>tio-core</artifactId>
-			<version>3.2.1.v20181024-RELEASE</version>
-		</dependency>
-		<!-- jfinal 核心包 -->
-		<dependency>
-			<groupId>com.jfinal</groupId>
-			<artifactId>jfinal</artifactId>
-			<version>2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jfinal</groupId>
-			<artifactId>cos</artifactId>
-			<version>26Dec2008</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
 		</dependency>
 
 	</dependencies>
