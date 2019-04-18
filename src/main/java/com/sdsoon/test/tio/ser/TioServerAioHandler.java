@@ -1,5 +1,7 @@
 package com.sdsoon.test.tio.ser;
 
+import com.alibaba.fastjson.JSON;
+import com.sdsoon.test.tio.bean.TestBean;
 import com.sdsoon.test.tio.bean.TioPacket;
 import org.tio.core.ChannelContext;
 import org.tio.core.GroupContext;
@@ -13,7 +15,7 @@ import java.nio.ByteBuffer;
 /**
  * Created By Chr on 2019/4/15.
  */
-public class  TioServerAioHandler implements ServerAioHandler {
+public class TioServerAioHandler implements ServerAioHandler {
     /**
      * 解码：把接收到的ByteBuffer，解码成应用可以识别的业务消息包
      * 总的消息结构：消息头 + 消息体
@@ -51,6 +53,7 @@ public class  TioServerAioHandler implements ServerAioHandler {
             return imPacket;
         }
     }
+
     /**
      * 编码：把业务消息包编码为可以发送的ByteBuffer
      * 总的消息结构：消息头 + 消息体
@@ -79,6 +82,7 @@ public class  TioServerAioHandler implements ServerAioHandler {
         }
         return buffer;
     }
+
     /**
      * 处理消息：用于接收client发来的数据
      */
@@ -89,11 +93,20 @@ public class  TioServerAioHandler implements ServerAioHandler {
         byte[] body = TioPacket.getBody();
         if (body != null) {
             String str = new String(body, TioPacket.CHARSET);
-            System.err.println(" 客户端 收到消息：" + str);
-            TioPacket resppacket = new TioPacket();
-            resppacket.setBody(("收到了你的消息，你的消息是:" + str).getBytes(TioPacket.CHARSET));
-            //服务端收到消息后 给client回执
-            Tio.send(channelContext, resppacket);
+            System.err.println(" 服务端接收的数据是" + str);
+
+            try {
+                TestBean testBean = JSON.parseObject(str, TestBean.class);
+                System.err.println(testBean.getTimel());
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                TioPacket resppacket = new TioPacket();
+                resppacket.setBody(("收到了你的消息，你的消息是:" + str).getBytes(TioPacket.CHARSET));
+                //服务端收到消息后 给client回执
+                Tio.send(channelContext, resppacket);
+            }
+
         }
         return;
     }

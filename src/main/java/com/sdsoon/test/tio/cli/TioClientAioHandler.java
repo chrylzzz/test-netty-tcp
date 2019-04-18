@@ -88,7 +88,7 @@ public class TioClientAioHandler implements ClientAioHandler {
         byte[] body = TioPacket.getBody();
         if (body != null) {
             String str = new String(body, TioPacket.CHARSET);
-            System.out.println(" 确认服务端 是否 收到消息：" + str);
+            System.err.println(" 确认服务端 是否 收到消息：" + str);
         }
         return;
     }
