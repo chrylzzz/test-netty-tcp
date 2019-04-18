@@ -27,7 +27,7 @@ public class RpcClient {
     }
 
     //    private final static String serviceAddress = "192.168.0.148:60000";
-    private final static String serviceAddress = "192.168.0.148:700";
+    private final static String serviceAddress = "127.0.0.1:700";
 
     public Object create() {
 
