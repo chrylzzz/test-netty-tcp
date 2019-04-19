@@ -1,6 +1,8 @@
 package com.sdsoon.netty.ser;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -55,8 +57,11 @@ public class RpcServer {
                     pipeline.addLast("encoder", new ObjectEncoder());
                     pipeline.addLast("decoder", new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
 
-                    //基于分隔符
-//                    pipeline.addLast(new DelimiterBasedFrameDecoder(4096, Delimiters.lineDelimiter()));
+                    //基于分隔符,进行消息传递
+                    //参数1024表示单条消息的最大长度，当达到该长度仍然没有找到分隔符就抛出TooLongFrame异常，第二个参数就是分隔符
+//                    pipeline.addLast(new DelimiterBasedFrameDecoder(1024, Delimiters.lineDelimiter()));
+//                    ByteBuf delimiter = Unpooled.copiedBuffer("$_".getBytes());
+//                    pipeline.addLast(new DelimiterBasedFrameDecoder(1024, delimiter);
 
 //                    pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));//对 String 对象自动编码,属于出站站处理器
 //                    pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));//把网络字节流自动解码为 String 对象，属于入站处理器
