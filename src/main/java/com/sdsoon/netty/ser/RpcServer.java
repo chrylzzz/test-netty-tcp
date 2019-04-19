@@ -50,14 +50,14 @@ public class RpcServer {
                     ChannelPipeline pipeline = channel.pipeline();
 
 
-                    //基于长度
+                    //基于长度解码器
                     pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
                     pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
 
                     pipeline.addLast("encoder", new ObjectEncoder());
                     pipeline.addLast("decoder", new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
 
-                    //基于分隔符,进行消息传递
+                    //基于分隔符解码,进行消息传递
                     //参数1024表示单条消息的最大长度，当达到该长度仍然没有找到分隔符就抛出TooLongFrame异常，第二个参数就是分隔符
 //                    pipeline.addLast(new DelimiterBasedFrameDecoder(1024, Delimiters.lineDelimiter()));
 //                    ByteBuf delimiter = Unpooled.copiedBuffer("$_".getBytes());
