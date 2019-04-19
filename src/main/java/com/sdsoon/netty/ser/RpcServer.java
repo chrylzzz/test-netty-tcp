@@ -48,14 +48,18 @@ public class RpcServer {
                     ChannelPipeline pipeline = channel.pipeline();
 
 
+                    //基于长度
                     pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
                     pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
+
                     pipeline.addLast("encoder", new ObjectEncoder());
                     pipeline.addLast("decoder", new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
 
+                    //基于分隔符
+//                    pipeline.addLast(new DelimiterBasedFrameDecoder(4096, Delimiters.lineDelimiter()));
 
-//                    pipeline.addLast(new StringEncoder());//对 String 对象自动编码,属于出站站处理器
-//                    pipeline.addLast(new StringDecoder());//把网络字节流自动解码为 String 对象，属于入站处理器
+//                    pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));//对 String 对象自动编码,属于出站站处理器
+//                    pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));//把网络字节流自动解码为 String 对象，属于入站处理器
 
                     pipeline.addLast(rpcServerHandler);
 
