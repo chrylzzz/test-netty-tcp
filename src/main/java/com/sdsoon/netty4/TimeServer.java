@@ -1,6 +1,6 @@
 package com.sdsoon.netty4;
 
-import com.sdsoon.netty.RpcServerHandler;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -24,7 +24,6 @@ public class TimeServer {
 
 
     private final static String serviceAddress = "127.0.0.1:700";
-    final RpcServerHandler rpcServerHandler = new RpcServerHandler();
 
 
     public void bind(int port) {
